@@ -26,37 +26,51 @@ ARE is not about slowing agents down. It is about making them **trustworthy enou
 
 ---
 
-## The First Principles
+## The Tenets
 
-**1. Intelligence never grants authority.**
-An agent being capable of an action is not justification for performing it. Capability and authorization are separate concerns and must be separately enforced.
+### FOUNDATIONAL — How you build it
 
-**2. Every agent must be provably legible.**
-Not monitored. Not logged. *Legible* — any authorized party must be able to reconstruct exactly who the agent is, what it was authorized to do, and what it actually did, at any point in time.
+**I. Governance is architectural, not operational.**
+Accountability cannot be retrofitted. Identity, authority, and proof must be primitives present from the first action, not added after the first incident.
 
-**3. Trust has a half-life.**
-The basis for authorizing an agent's action degrades over time. Authorization must be continuously re-established, not assumed from prior grant.
+**II. The spawn chain is the authority chain.**
+Every agent must be traceable to a human origin. Delegation is not inheritance. Each step must explicitly scope what transfers and what does not. Undocumented delegation is unauthorized delegation.
 
-**4. Policy is infrastructure.**
-Governance cannot live inside the agent. An agent that governs itself is not governed. Policy enforcement must be external, verifiable, and outside the agent's ability to override.
+**III. The ledger is ground truth.**
+What an agent did is defined by the immutable, cryptographically signed record of its actions, not by what it reported, what its logs suggest, or what its operator believes.
 
-**5. Failure must be bounded.**
-An agent that fails silently is more dangerous than an agent that fails loudly. ARE systems surface failures at the earliest detectable point and contain blast radius before escalation.
+---
 
-**6. The delegation chain is the audit trail.**
-Every agent action must be traceable to a human decision. If you cannot answer "which human authorized this chain of actions," the system is ungoverned regardless of what the logs say.
+### OPERATIONAL — How you run it
 
-**7. Observability is not optional.**
-You cannot govern what you cannot see. Metrics, traces, and decision logs are not compliance features — they are the primitive layer everything else depends on.
+**IV. Intelligence never grants authority.**
+Capability is not permission. Authorization must be explicit, bounded, and separate from capability at every layer of the system.
 
-**8. Posture degrades under pressure.**
-Governance systems that hold in normal operation often collapse under load, incident, or deadline pressure. ARE systems are designed to hold their posture precisely when the environment is most hostile.
+**V. Scope is a contract, not a suggestion.**
+An agent's defined scope is a binding constraint, not a behavioral description. Deviation is not a bug. It is a breach.
 
-**9. The framework precedes the feature.**
-Governance retrofitted onto an existing agent system is technical debt with compliance risk attached. ARE is built first, not bolted on after.
+**VI. Trust has a half-life.**
+Authorization degrades. Policies age. Models drift. The basis for trust must be continuously revalidated, not assumed to hold indefinitely.
 
-**10. Together or not at all.**
-Governance that only one team believes in is not governance. ARE requires organizational alignment — engineering, product, compliance, and operations moving in the same direction.
+---
+
+### EPISTEMOLOGICAL — How you know it
+
+**VII. Every agent must be provably legible.**
+Any authorized party must be able to reconstruct who the agent is, what it was authorized to do, and what it actually did, with cryptographic certainty, at any point in time.
+
+**VIII. Proof requires falsification.**
+Observation produces data. Investigation produces hypotheses. Neither produces proof. A verified conclusion requires a documented falsification trail — what was tested, what failed, what survived, and why.
+
+---
+
+### POSTURE — How you hold the line
+
+**IX. An unknown agent is an ungovernable agent.**
+An agent that cannot be identified, traced, and scoped has no standing in a governed system. Ungovernability is treated as a critical condition by default.
+
+**X. The system must explain itself.**
+A governance system that only its builders can interpret has failed its primary obligation. Legibility to auditors, operators, and the people affected by agent decisions is not a feature. It is the measure of whether governance is actually governing anything at all.
 
 ---
 
@@ -66,25 +80,27 @@ ARE operates across four layers:
 
 ```
 ┌─────────────────────────────────────┐
-│           POSTURE LAYER             │  Org alignment, culture, incentives
+│           POSTURE LAYER             │  How you hold the line
 ├─────────────────────────────────────┤
-│       EPISTEMOLOGICAL LAYER         │  What the system knows and how it knows it
+│       EPISTEMOLOGICAL LAYER         │  How you know it
 ├─────────────────────────────────────┤
-│         OPERATIONAL LAYER           │  Runtime enforcement, observability, response
+│         OPERATIONAL LAYER           │  How you run it
 ├─────────────────────────────────────┤
-│         FOUNDATIONAL LAYER          │  Identity, authorization, policy primitives
+│         FOUNDATIONAL LAYER          │  How you build it
 └─────────────────────────────────────┘
 ```
 
-**Foundational** — Agent identity (passports), cryptographic authorization chains, external policy enforcement. Nothing runs without this layer being correct.
+**Foundational** — Agent identity (passports), cryptographic authorization chains, immutable ledger, external policy enforcement. Nothing runs without this layer being correct.
 
-**Operational** — Runtime enforcement, drift detection, incident intelligence, SLO/SLI tracking for agent behavior. This layer makes the foundational layer observable.
+**Operational** — Runtime enforcement, scope contracts, drift detection, SLO/SLI tracking for agent behavior. This layer makes the foundational layer enforceable.
 
-**Epistemological** — How the system knows what agents know, what they were told, and whether that knowledge is still valid. Evidence decay, context staleness, hallucination surface area.
+**Epistemological** — How the system knows what agents know, what they were told, and whether that knowledge is still valid. Evidence decay, context staleness, falsification trails.
 
 **Posture** — The organizational and cultural conditions required for the other three layers to hold under real-world pressure. The layer most often missing.
 
 ---
+
+## The Reference Implementation
 
 Key components:
 
