@@ -102,18 +102,19 @@ ARE operates across four layers:
 
 ## STAMP paper (bounded safety case)
 
-Structured argument connecting **STAMP/STPA** to **Agent Responsibility Engineering** at a **defined execution boundary** (not “safe AI” in the large). Editable sources are versioned here alongside PDF for readers and reviewers.
+Structured argument connecting **STAMP/STPA** to **Agent Responsibility Engineering** at a **defined execution boundary** (not “safe AI” in the large). **Evidence is tiered** (public paper → one-page summary → full hashed bundle on request); see **`EVIDENCE_PUBLIC_SUMMARY.md`** and §13 of the Markdown/PDF.
 
 | File | Description |
 |------|-------------|
-| **`STAMP_ARE_Paper.pdf`** | Current PDF export of the reconciled manuscript (bounded STPA closure, §13 evidence posture). |
-| **`STAMP_ARE_Paper_arxiv_ready.md`** | Markdown source (synced from the ARE platform `paper/` build). |
-| **`STAMP_ARE_Paper_arxiv_ready.docx`** | Word source for venues that accept `.docx` or for regenerating PDF locally. |
-| **`ARXIV_AND_EVIDENCE_REALITY.md`** | Honest map: **arXiv LaTeX vs Markdown**, tables/figures/charts status, **where frozen evidence bundles live** (platform repo, not here), and how to zip ancillaries. |
+| **`README_PAPER_PIPELINE.md`** | **Start here** — build order, links, submission zip pointer. |
+| **`STAMP_ARE_Paper.pdf`** | Latest PDF (Word pipeline: tables + embedded figure/equation PNGs). |
+| **`STAMP_ARE_Paper_arxiv_ready.md`** / **`.docx`** | Sources synced from the ARE platform `paper/` build. |
+| **`EVIDENCE_PUBLIC_SUMMARY.md`** | **Level 2** attestation: freeze id, commit, what artifact *classes* exist (no raw logs). |
+| **`PDF_AND_WORD_FORMATTING.md`** | Why PDF layout differs from LaTeX; OneDrive / export tips. |
+| **`ARXIV_AND_EVIDENCE_REALITY.md`** | Short pointer: arXiv LaTeX vs this Markdown path. |
+| **`paper-assets/*.png`** | Raster figures embedded in the PDF (golden path + invariant equations). |
 
-The slim paper now includes **Appendix B** (hazard closure table) and **Appendix C** (text figure: golden execution chain) in the synced Markdown / PDF. It does **not** yet ship a LaTeX camera-ready build or generated charts—see the reality note.
-
-Frozen hashes, test logs, and normative **`STPA_RESOLUTION.md`** for independent verification of evidentiary claims are maintained with the **reference platform** repository’s `research/evidence-bundles/` tree; this repo holds the **public** discipline narrative and paper exports.
+Full **Level 3** frozen packets (logs, `FILES.sha256`, copied `STPA_RESOLUTION.md`, etc.) live with the **reference platform** repository under `research/evidence-bundles/` — not in this public repo; reviewers can request or receive the zip as supplementary material.
 
 ---
 

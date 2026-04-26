@@ -6,7 +6,7 @@
 *Originator, Agent Responsibility Engineering*  
 agentresponsibilityengineering.com | srexai.dev | 2026
 
-**Preprint (reconciled).** Bounded STPA closure per `research/stpa/STPA_RESOLUTION.md`. **Public discipline materials** (README, tenets, PDFs): [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering). **This paper’s evidence** is drawn from **privately held** implementation artifacts and a frozen bundle under `research/evidence-bundles/` — the **full monolith** is **not** asserted here as an open-source public clone. **Submission mechanics** (arXiv LaTeX vs Markdown, figures, where bundles live): `paper/ARXIV_AND_EVIDENCE_REALITY.md`. *Update commit hash when re-freezing.*
+**Preprint (reconciled).** Bounded STPA closure per `research/stpa/STPA_RESOLUTION.md`. **Public discipline materials** (README, tenets, PDFs): [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering). **This paper’s evidence** is drawn from **privately held** implementation artifacts and a frozen bundle under `research/evidence-bundles/` — the **full monolith** is **not** asserted here as an open-source public clone. **Paper / PDF / evidence hub:** `paper/README_PAPER_PIPELINE.md` (also `paper/ARXIV_AND_EVIDENCE_REALITY.md`). *Update commit hash when re-freezing.*
 
 # Abstract
 
@@ -206,17 +206,39 @@ Agent internal reasoning : ARE governs what agents do, not what they think. The 
 
 # 13. Evidence, reproducibility, and frozen packet
 
-**Public narrative (discipline, tenets, PDFs):** [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering).
+**This is not “full evidence or nothing.”** There are **three levels** so public readers are not asked to download megabytes of logs, while reviewers can still escalate to **hashed, replayable** artifacts.
 
-**Research documentation spine (this repository):** Normative STPA closure and traceability live under `research/stpa/` (index `research/stpa/README.md`): `STPA_PACKAGE.md`, `STPA_RESOLUTION.md`, `UCA_ENUMERATION.md`, `HAZARD_UCA_CONSTRAINT_TEST_CLOSURE.md`, `BOUNDARY_AND_ASSUMPTIONS_STPA.md`, `CAUSAL_SCENARIOS_SYSTEMATIC.md`. Interposition audit: `research/interposition_audit.md`. Claims and reviewer matrix: `research/claims_ledger.md`, `research/reviewer_attacks.md`. Track evidence summaries: `research/track-a-stamp/EVIDENCE_SUMMARY.md`, `research/track-b-interposition/EVIDENCE_SUMMARY.md`; cross-track pointer: `research/DUAL_TRACK_SUMMARY.md`.
+## 13.1 Level 1 — Always public (no NDA, no bundle download)
 
-**Implementation evidence** for the claims in §4–§7 is drawn from component and integration tests on the **frozen** configuration captured in the evidence bundle—not as a substitute for deployment certification. Falsifiers include Rust and Go service tests on the golden path; lightweight Python harnesses additionally regress documentation and structure (exact harness layout may be omitted in a redacted public variant).
+1. This paper (including **Appendices A–C**: roles, hazard table, graphic summary).
+2. The public discipline repository (README, tenets, PDFs): [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering).
+3. **`paper/EVIDENCE_PUBLIC_SUMMARY.md`** — one-page **attestation**: what was frozen, which commit, what *classes* of artifact exist (still **not** raw logs).
 
-**Frozen reviewer packets** — procedure and layout: `research/evidence-bundles/README.md`. Submission snapshot `research/evidence-bundles/2026-04-26-stamp-safety-reviewer-packet-submission/` copies key research artifacts (`STPA_RESOLUTION.md`, `STPA_PACKAGE.md`, `claims_ledger.md`, `interposition_audit.md`, `SAFETY_CASE.md`, paper pointers), gate logs, `GIT_HEAD.txt` / `GIT_BRANCH.txt`, `MANIFEST.md`, and `FILES.sha256`. **Re-freeze** for a new submission by re-running `pytest tests/ -q`, `python tools/testing/run-all-internal-gates.py`, and the steps in `research/evidence-bundles/README.md`, then updating the commit hash in this paper’s metadata.
+**Why the public PDF does not embed the full bundle:** logs and internal gate matrices expose **integration topology, paths, and operational detail** we treat as **implementation hygiene / IP**. That is normal for industrial safety cases: the **argument** is public; the **engineering packet** is often shared under confidentiality or as supplementary material.
 
-**Independent verification without full source:** The frozen evidence bundle provides **verifiable artifacts** (cryptographic hashes, command transcripts, structured test and gate outputs, and normative STPA closure text) **sufficient for independent inspection of the paper’s evidentiary claims**, even where the full implementation source is not publicly distributed.
+## 13.2 Level 2 — Repository research spine (clone the `are` repo)
 
-**Formal methods:** `formal/tla/are_execution_boundary.tla` is a **TLA+ skeleton** expressing ordering obligations—it is a **proof target**, not a TLAPS proof.
+Normative STPA closure and traceability live under `research/stpa/` (index `research/stpa/README.md`): `STPA_PACKAGE.md`, `STPA_RESOLUTION.md`, `UCA_ENUMERATION.md`, `HAZARD_UCA_CONSTRAINT_TEST_CLOSURE.md`, `BOUNDARY_AND_ASSUMPTIONS_STPA.md`, `CAUSAL_SCENARIOS_SYSTEMATIC.md`. Interposition audit: `research/interposition_audit.md`. Claims and reviewer matrix: `research/claims_ledger.md`, `research/reviewer_attacks.md`. Track summaries: `research/track-a-stamp/EVIDENCE_SUMMARY.md`, `research/track-b-interposition/EVIDENCE_SUMMARY.md`; `research/DUAL_TRACK_SUMMARY.md`.
+
+## 13.3 Level 3 — Full frozen packet (on request, or ancillary zip)
+
+**Directory:** `research/evidence-bundles/2026-04-26-stamp-safety-reviewer-packet-submission/` — copies of normative docs, **full** pytest + internal-gate transcripts, `GIT_HEAD.txt`, `MANIFEST.md`, and **`FILES.sha256`** for integrity. **Program chairs / reviewers** may request this zip under confidentiality, or authors may attach it as **arXiv Ancillary** / journal supplementary. **Assemble** a portable tree with `python tools/paper/assemble_submission_package.py` (see `paper/submission-package/README.md`).
+
+**Independent verification without full source:** Level 3 provides **verifiable artifacts** (hashes, transcripts, structured outputs, normative closure text) **sufficient to inspect the paper’s evidentiary claims**; Level 1–2 still let readers **orient** without that download.
+
+## 13.4 Graphic summary (tables + equation-style figures)
+
+The Word/PDF pipeline embeds raster figures generated from `tools/paper/render_paper_assets.py` (run before `md_to_arxiv_docx.py`). **Golden path:**
+
+![Figure 1. Governed execution chain (graphic summary).](assets/fig_golden_path.png)
+
+**PEV ordering and H6 (Allow+Ledger) invariants (rendered “equation” images):**
+
+![Equation 1. Validate → receipt → execute on the golden path.](assets/eq_ordering.png)
+
+![Equation 2. Allow requires durable ledger evidence (else deny).](assets/eq_allow_ledger.png)
+
+**Formal methods (not shown as images):** `formal/tla/are_execution_boundary.tla` is a **TLA+ skeleton** — a **proof target**, not a TLAPS proof.
 
 # 14. Related Work
 
@@ -325,22 +347,10 @@ Additional citations from the source manuscript (Rabanser et al., runtime govern
 | **H6** | Degraded control / Ledger leaves permit path | **Mitigated** (Allow+Ledger) + **Accepted** (non-Allow edge) |
 | **H7** | Strata disagree; pipeline not fail-safe | **Assumption** + **Accepted** (outside monolith) |
 
-## Appendix C. Figure (text): golden governed execution chain
+## Appendix C. Figure (graphic): golden governed execution chain
 
-Single-chain causal order asserted for **verified** claims (see §3.5, §4, frozen tests):
+*Graphic also shown in §13.4. Deployment routing and side channels remain explicit assumptions in `STPA_RESOLUTION.md`.*
 
-    proposed action
-         |
-    policy coprocessor  (verdict; Allow requires Ledger write — H6)
-         |
-    pre-execution validator  (live passport / binding)
-         |
-    receipt generator  (evidence binding)
-         |
-    atomic execution engine  (validate → receipt → execute)
-         |
-    executor  (side effect)
-
-*Not a circuit diagram; deployment routing and side channels are explicit assumptions in `STPA_RESOLUTION.md`.*
+![Figure C-1. Governed execution chain (graphic summary).](assets/fig_golden_path.png)
 
 *Version note: Assembled by `tools/paper/build_stamp_arxiv_reconciled.py` from `paper/STAMP_ARE_docx_paragraphs.txt` plus reconciled inserts; §5.2–§12.2 and §14.2 are spliced from `paper/stamp_arxiv_alignment_block.md` and `paper/stamp_arxiv_alignment_14_2.md` when present. Submission layout vs LaTeX: `paper/ARXIV_AND_EVIDENCE_REALITY.md`. Re-freeze evidence and update the commit hash when preparing submission.*
