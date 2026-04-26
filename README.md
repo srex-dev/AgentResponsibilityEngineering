@@ -100,6 +100,20 @@ ARE operates across four layers:
 
 ---
 
+## STAMP paper (bounded safety case)
+
+Structured argument connecting **STAMP/STPA** to **Agent Responsibility Engineering** at a **defined execution boundary** (not “safe AI” in the large). Editable sources are versioned here alongside PDF for readers and reviewers.
+
+| File | Description |
+|------|-------------|
+| **`STAMP_ARE_Paper.pdf`** | Current PDF export of the reconciled manuscript (bounded STPA closure, §13 evidence posture). |
+| **`STAMP_ARE_Paper_arxiv_ready.md`** | Markdown source (synced from the ARE platform `paper/` build). |
+| **`STAMP_ARE_Paper_arxiv_ready.docx`** | Word source for venues that accept `.docx` or for regenerating PDF locally. |
+
+Frozen hashes, test logs, and normative **`STPA_RESOLUTION.md`** for independent verification of evidentiary claims are maintained with the **reference platform** repository’s `research/` tree; this repo holds the **public** discipline narrative and paper exports.
+
+---
+
 ## The Reference Implementation
 
 Key components:
