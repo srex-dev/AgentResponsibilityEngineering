@@ -109,8 +109,11 @@ Structured argument connecting **STAMP/STPA** to **Agent Responsibility Engineer
 | **`STAMP_ARE_Paper.pdf`** | Current PDF export of the reconciled manuscript (bounded STPA closure, §13 evidence posture). |
 | **`STAMP_ARE_Paper_arxiv_ready.md`** | Markdown source (synced from the ARE platform `paper/` build). |
 | **`STAMP_ARE_Paper_arxiv_ready.docx`** | Word source for venues that accept `.docx` or for regenerating PDF locally. |
+| **`ARXIV_AND_EVIDENCE_REALITY.md`** | Honest map: **arXiv LaTeX vs Markdown**, tables/figures/charts status, **where frozen evidence bundles live** (platform repo, not here), and how to zip ancillaries. |
 
-Frozen hashes, test logs, and normative **`STPA_RESOLUTION.md`** for independent verification of evidentiary claims are maintained with the **reference platform** repository’s `research/` tree; this repo holds the **public** discipline narrative and paper exports.
+The slim paper now includes **Appendix B** (hazard closure table) and **Appendix C** (text figure: golden execution chain) in the synced Markdown / PDF. It does **not** yet ship a LaTeX camera-ready build or generated charts—see the reality note.
+
+Frozen hashes, test logs, and normative **`STPA_RESOLUTION.md`** for independent verification of evidentiary claims are maintained with the **reference platform** repository’s `research/evidence-bundles/` tree; this repo holds the **public** discipline narrative and paper exports.
 
 ---
 

@@ -6,7 +6,7 @@
 *Originator, Agent Responsibility Engineering*  
 agentresponsibilityengineering.com | srexai.dev | 2026
 
-**Preprint (reconciled).** Bounded STPA closure per `research/stpa/STPA_RESOLUTION.md`. **Public discipline materials** (README, tenets, PDFs): [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering). **This paper’s evidence** is drawn from **privately held** implementation artifacts and a frozen bundle under `research/evidence-bundles/` — the **full monolith** is **not** asserted here as an open-source public clone. *Update commit hash when re-freezing.*
+**Preprint (reconciled).** Bounded STPA closure per `research/stpa/STPA_RESOLUTION.md`. **Public discipline materials** (README, tenets, PDFs): [github.com/srex-dev/AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering). **This paper’s evidence** is drawn from **privately held** implementation artifacts and a frozen bundle under `research/evidence-bundles/` — the **full monolith** is **not** asserted here as an open-source public clone. **Submission mechanics** (arXiv LaTeX vs Markdown, figures, where bundles live): `paper/ARXIV_AND_EVIDENCE_REALITY.md`. *Update commit hash when re-freezing.*
 
 # Abstract
 
@@ -311,4 +311,36 @@ Additional citations from the source manuscript (Rabanser et al., runtime govern
 
 *A **reviewer supplement** may map roles to internal paths under confidentiality.*
 
-*Version note: Assembled by `tools/paper/build_stamp_arxiv_reconciled.py` from `paper/STAMP_ARE_docx_paragraphs.txt` plus reconciled inserts; §5.2–§12.2 and §14.2 are spliced from `paper/stamp_arxiv_alignment_block.md` and `paper/stamp_arxiv_alignment_14_2.md` when present. Re-freeze evidence and update the commit hash when preparing submission.*
+## Appendix B. Hazard closure at a glance (normative summary)
+
+*Authoritative rationale, residuals, and assumptions: `research/stpa/STPA_RESOLUTION.md` §1.*
+
+| ID | Hazard (abbrev.) | Resolution (within boundary) |
+|----|------------------|--------------------------------|
+| **H1** | Execution without verdict bound to action | **Mitigated** |
+| **H2** | Invalid / forged / expired authority as valid | **Mitigated** |
+| **H3** | Revocation not visible in time | **Accepted** (bounded) |
+| **H4** | Evidence not bound before side effect | **Mitigated** |
+| **H5** | Stale / incomplete process model | **Mitigated** + **Accepted** (residual) |
+| **H6** | Degraded control / Ledger leaves permit path | **Mitigated** (Allow+Ledger) + **Accepted** (non-Allow edge) |
+| **H7** | Strata disagree; pipeline not fail-safe | **Assumption** + **Accepted** (outside monolith) |
+
+## Appendix C. Figure (text): golden governed execution chain
+
+Single-chain causal order asserted for **verified** claims (see §3.5, §4, frozen tests):
+
+    proposed action
+         |
+    policy coprocessor  (verdict; Allow requires Ledger write — H6)
+         |
+    pre-execution validator  (live passport / binding)
+         |
+    receipt generator  (evidence binding)
+         |
+    atomic execution engine  (validate → receipt → execute)
+         |
+    executor  (side effect)
+
+*Not a circuit diagram; deployment routing and side channels are explicit assumptions in `STPA_RESOLUTION.md`.*
+
+*Version note: Assembled by `tools/paper/build_stamp_arxiv_reconciled.py` from `paper/STAMP_ARE_docx_paragraphs.txt` plus reconciled inserts; §5.2–§12.2 and §14.2 are spliced from `paper/stamp_arxiv_alignment_block.md` and `paper/stamp_arxiv_alignment_14_2.md` when present. Submission layout vs LaTeX: `paper/ARXIV_AND_EVIDENCE_REALITY.md`. Re-freeze evidence and update the commit hash when preparing submission.*
