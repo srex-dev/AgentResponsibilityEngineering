@@ -2,158 +2,215 @@
 
 **A discipline for governing autonomous AI agents in production.**
 
----
+Agent Responsibility Engineering is the practice of making autonomous AI agents
+legible, bounded, authorized, and provable before they take consequential
+actions.
 
-## The Problem
+The short version:
 
-Agents are already in production.
+> Intelligence is not authority. An agent may be capable of doing something and
+> still have no right to do it.
 
-They are calling APIs, moving money, drafting communications, making decisions, and operating inside regulated environments with real consequences. Most of them have no identity. No verifiable authorization chain. No observable decision trail. No policy enforcement that isn't also the agent itself.
+ARE exists to make that boundary explicit.
 
-We gave them intelligence. We did not give them governance.
+## Why This Exists
 
-That is the problem ARE exists to solve.
+Agents are already calling APIs, touching data, drafting communications,
+triggering workflows, and operating inside regulated environments. Many systems
+still rely on prompts, logs, dashboards, or after-the-fact review as the primary
+control.
 
----
+That is not enough for production governance.
 
-## The Discipline
-
-Agent Responsibility Engineering is the practice of making autonomous AI agents **safe to run at scale** in production environments.
-
-Not safe in theory. Safe in practice — in the same way Site Reliability Engineering made distributed systems safe to operate at scale. SRE didn't eliminate failure. It made failure observable, bounded, and recoverable. ARE does the same for autonomous agents.
-
-ARE is not about slowing agents down. It is about making them **trustworthy enough to move fast**.
-
----
+ARE treats identity, scoped authority, policy, evidence, and auditability as
+system primitives. The goal is not to slow agents down. The goal is to make them
+trustworthy enough to move fast.
 
 ## The Tenets
 
-### FOUNDATIONAL — How you build it
+### Foundational: how you build it
 
 **I. Governance is architectural, not operational.**
-Accountability cannot be retrofitted. Identity, authority, and proof must be primitives present from the first action, not added after the first incident.
+
+Accountability cannot be retrofitted. Identity, authority, and proof must be
+present from the first action.
 
 **II. The spawn chain is the authority chain.**
-Every agent must be traceable to a human origin. Delegation is not inheritance. Each step must explicitly scope what transfers and what does not. Undocumented delegation is unauthorized delegation.
+
+Every agent must be traceable to a human or organizational origin. Delegation is
+not inheritance; each step must explicitly scope what transfers.
 
 **III. The ledger is ground truth.**
-What an agent did is defined by the immutable, cryptographically signed record of its actions, not by what it reported, what its logs suggest, or what its operator believes.
 
----
+What an agent did is defined by durable evidence, not by what the agent reported
+or what an operator remembers.
 
-### OPERATIONAL — How you run it
+### Operational: how you run it
 
 **IV. Intelligence never grants authority.**
-Capability is not permission. Authorization must be explicit, bounded, and separate from capability at every layer of the system.
+
+Capability is not permission. Authorization must be explicit, bounded, and
+separate from model capability.
 
 **V. Scope is a contract, not a suggestion.**
-An agent's defined scope is a binding constraint, not a behavioral description. Deviation is not a bug. It is a breach.
+
+An agent's scope is a binding constraint. Deviation is a governance event, not
+just a behavior bug.
 
 **VI. Trust has a half-life.**
-Authorization degrades. Policies age. Models drift. The basis for trust must be continuously revalidated, not assumed to hold indefinitely.
 
----
+Authorization degrades. Policies age. Models drift. The basis for trust must be
+revalidated continuously.
 
-### EPISTEMOLOGICAL — How you know it
+### Epistemological: how you know it
 
 **VII. Every agent must be provably legible.**
-Any authorized party must be able to reconstruct who the agent is, what it was authorized to do, and what it actually did, with cryptographic certainty, at any point in time.
+
+An authorized reviewer should be able to reconstruct who acted, what they were
+allowed to do, what happened, and why.
 
 **VIII. Proof requires falsification.**
-Observation produces data. Investigation produces hypotheses. Neither produces proof. A verified conclusion requires a documented falsification trail — what was tested, what failed, what survived, and why.
 
----
+Observation is not proof. A verified conclusion needs a record of what was
+tested, what failed, what survived, and why.
 
-### POSTURE — How you hold the line
+### Posture: how you hold the line
 
 **IX. An unknown agent is an ungovernable agent.**
-An agent that cannot be identified, traced, and scoped has no standing in a governed system. Ungovernability is treated as a critical condition by default.
+
+An agent that cannot be identified, traced, and scoped has no standing in a
+governed system.
 
 **X. The system must explain itself.**
-A governance system that only its builders can interpret has failed its primary obligation. Legibility to auditors, operators, and the people affected by agent decisions is not a feature. It is the measure of whether governance is actually governing anything at all.
 
----
+A governance system that only its builders can interpret has failed. Legibility
+to operators, auditors, and affected people is the measure of whether governance
+is actually governing.
 
-## The Architecture
+## Four-Layer Model
 
-ARE operates across four layers:
-
-```
-┌─────────────────────────────────────┐
-│           POSTURE LAYER             │  How you hold the line
-├─────────────────────────────────────┤
-│       EPISTEMOLOGICAL LAYER         │  How you know it
-├─────────────────────────────────────┤
-│         OPERATIONAL LAYER           │  How you run it
-├─────────────────────────────────────┤
-│         FOUNDATIONAL LAYER          │  How you build it
-└─────────────────────────────────────┘
+```mermaid
+flowchart TB
+  P["Posture\nHow the organization holds the line"]
+  E["Epistemological\nHow the system knows and proves"]
+  O["Operational\nHow authority is enforced at runtime"]
+  F["Foundational\nHow identity, scope, policy, and proof are built"]
+  P --> E --> O --> F
 ```
 
-**Foundational** — Agent identity (passports), cryptographic authorization chains, immutable ledger, external policy enforcement. Nothing runs without this layer being correct.
+| Layer | Question | Examples |
+|---|---|---|
+| Foundational | What must exist before any action? | agent identity, scoped authority, policy checks, ledger/proof root |
+| Operational | How is it enforced while running? | runtime enforcement, scope contracts, drift checks, revocation |
+| Epistemological | How do we know and prove it? | evidence freshness, falsification, source truth, replay |
+| Posture | How does the organization keep the line? | ownership, escalation, review gates, safety culture |
 
-**Operational** — Runtime enforcement, scope contracts, drift detection, SLO/SLI tracking for agent behavior. This layer makes the foundational layer enforceable.
+## Public Research And Paper
 
-**Epistemological** — How the system knows what agents know, what they were told, and whether that knowledge is still valid. Evidence decay, context staleness, falsification trails.
-
-**Posture** — The organizational and cultural conditions required for the other three layers to hold under real-world pressure. The layer most often missing.
-
----
-
-## STAMP paper (bounded safety case)
-
-Structured argument connecting **STAMP/STPA** to **Agent Responsibility Engineering** at a **defined execution boundary**. **Evidence is tiered** (public paper → one-page summary → full hashed bundle on request).
+This repository is the public discipline and research mirror. It includes:
 
 | What | Where |
-|------|--------|
-| **Start here (pipeline + links)** | [`docs/stamp-paper/README.md`](docs/stamp-paper/README.md) |
-| **Canonical PDF** | **[`STAMP_ARE_Paper.pdf`](STAMP_ARE_Paper.pdf)** (repo root — stable URL) |
-| **Markdown / Word sources** | [`paper/`](paper/) |
-| **Figure PNGs** | [`assets/stamp-paper/`](assets/stamp-paper/) |
-| **Normative STPA mirror** | [`research/stpa/`](research/stpa/) |
+|---|---|
+| Public STAMP/STPA paper PDF | [`STAMP_ARE_Paper.pdf`](STAMP_ARE_Paper.pdf) |
+| Paper source | [`paper/STAMP_ARE_Paper_arxiv_ready.md`](paper/STAMP_ARE_Paper_arxiv_ready.md) |
+| Paper pipeline notes | [`docs/stamp-paper/README.md`](docs/stamp-paper/README.md) |
+| Public evidence summary | [`docs/stamp-paper/EVIDENCE_PUBLIC_SUMMARY.md`](docs/stamp-paper/EVIDENCE_PUBLIC_SUMMARY.md) |
+| Validation tiers | [`docs/validation-tiers.md`](docs/validation-tiers.md) |
+| Public/commercial boundary | [`docs/public-boundary.md`](docs/public-boundary.md) |
+| Public STPA mirror | [`research/stpa/`](research/stpa/) |
 
-Full **Level 3** frozen packets remain with the **private** ARE platform repository — not in this public repo; reviewers may receive the zip as supplementary material.
+The paper is a bounded safety argument. It is not a claim that all autonomous AI
+systems are safe, and it is not a product certification.
 
----
+## Implementation Relationship
 
-## The Reference Implementation
+This repo defines the discipline and publishes public research artifacts. It is
+not the full ARE platform.
 
-Key components:
+Related implementation surfaces:
 
-- **Guardian-Agent** — Rust-based policy co-processor. External enforcement on the hot path. [`srex-dev/guardian-agent`](https://github.com/srex-dev/guardian-agent)
+- **ARE Foundation:** public S0/S1 foundation for actor identity, scoped
+  authority, scope/policy evaluation, and public-safe proof basics.
+- **Commercial ARE platform:** Command Center, visual RAG, BYOPolicy workflows,
+  Live Pulse, synthetic proof monitors, richer proof replay, S2-S6 adaptive
+  stages, and client/operator experiences.
+- **Governance-strata:** higher-risk transition governance and orchestration
+  concept used by the larger ARE platform; internals are not bundled here.
+- **Guardian-Agent:** historical policy co-processor reference used in earlier
+  thinking; later ARE architecture supersedes it for the current safety case.
 
----
+See [`docs/public-boundary.md`](docs/public-boundary.md) for the explicit line
+between public discipline material and private/commercial implementation.
+
+## Evidence Model
+
+Evidence is tiered:
+
+| Tier | Purpose | Public? |
+|---|---|---|
+| Level 1 | Public paper and discipline framing | Yes |
+| Level 2 | Public evidence summary and STPA mirror | Yes |
+| Level 3 | Frozen hashed reviewer packet with raw logs and full gate outputs | By request / supplementary packet |
+
+The public repo intentionally excludes raw logs, private proof bundles, protected
+evidence bodies, customer payloads, credentials, tokens, and commercial platform
+internals.
 
 ## Who This Is For
 
-ARE is for the engineer who just got asked "can you prove the agent only did what it was authorized to do" and doesn't have a clean answer.
+This work is for:
 
-For the architect building an agent platform inside a regulated industry who knows that compliance is coming and wants to build ahead of it.
+- platform engineers building agent runtimes
+- governance, risk, and compliance teams evaluating agent controls
+- safety engineers translating STAMP/STPA into agentic systems
+- researchers studying accountable autonomous systems
+- operators who need to prove an agent acted within authority
 
-For the team that shipped an agent to production and is now quietly terrified of what it might do next.
+## How To Review This Repo
 
-For the organization that wants to move fast with autonomous AI without becoming a case study in what happens when you don't govern it.
+Start here:
 
----
+1. Read the tenets above.
+2. Read [`docs/public-boundary.md`](docs/public-boundary.md).
+3. Read [`STAMP_ARE_Paper.pdf`](STAMP_ARE_Paper.pdf).
+4. Inspect [`research/stpa/STPA_RESOLUTION.md`](research/stpa/STPA_RESOLUTION.md).
+5. Check [`docs/stamp-paper/EVIDENCE_PUBLIC_SUMMARY.md`](docs/stamp-paper/EVIDENCE_PUBLIC_SUMMARY.md).
 
-## The State of the Field
+For a quick hygiene check:
 
-ARE is a new discipline. The vocabulary is being established now. The tooling is early. The patterns are emerging from production systems, not from whitepapers.
+```bash
+python tools/check_public_repo.py
+```
 
-If you are building governed agent systems in production — the framework is open. The conversation is open. The discipline is being defined by the people doing the work.
+## Contributing
 
-That is how SRE started. That is how ARE starts.
+Contributions are welcome for the public discipline surface: terminology,
+research references, STPA/STAMP clarity, examples, diagrams, and public-safe
+documentation.
 
----
+Do not contribute secrets, raw payloads, protected evidence, private proof
+packets, confidential client material, raw policy bodies, credentials, tokens,
+or commercial implementation internals.
 
-## Get Involved
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-If this framework reflects problems you are solving, **star and watch this repo**.
+## Citation
 
-The framework is evolving. Issues, discussion, and pull requests are open.
+Use [`CITATION.cff`](CITATION.cff) for citation metadata.
 
----
+## License
 
-*Built by [Jonathan Kershaw](https://linkedin.com/in/jonjonkershaw) — Principal AI Platform Engineer, founding practitioner of governed autonomous runtimes in regulated financial services.*
+Unless otherwise noted, the written materials, diagrams, papers, and public
+research artifacts in this repository are licensed under the Creative Commons
+Attribution 4.0 International License. See [`LICENSE`](LICENSE) and
+[`NOTICE`](NOTICE).
 
-*[github.com/srex-dev](https://github.com/srex-dev)*
+Future executable code, if added, should include explicit SPDX headers and may
+use a separate software license when stated.
+
+## Author
+
+Built by [Jonathan Kershaw](https://linkedin.com/in/jonjonkershaw), Principal AI
+Platform Engineer and founding practitioner of governed autonomous runtimes.
+
+[github.com/srex-dev](https://github.com/srex-dev)

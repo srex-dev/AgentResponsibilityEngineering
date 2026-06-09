@@ -1,0 +1,19 @@
+Agent Responsibility Engineering (ARE)
+
+Copyright (c) 2026 Jonathan Kershaw.
+
+Unless otherwise noted, the written materials, diagrams, papers, and public
+research artifacts in this repository are licensed under the Creative Commons
+Attribution 4.0 International License.
+
+Attribution should identify:
+
+  Jonathan Kershaw, "Agent Responsibility Engineering (ARE)"
+  https://github.com/srex-dev/AgentResponsibilityEngineering
+
+This repository is a public discipline and research mirror. It intentionally
+does not include private ARE platform source code, commercial Command Center
+surfaces, private proof packets, protected evidence bodies, raw customer
+payloads, credentials, tokens, or governance-strata internals.
+
+Third-party trademarks and project names belong to their respective owners.

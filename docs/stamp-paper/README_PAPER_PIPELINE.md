@@ -1,50 +1,47 @@
-# STAMP / ARE paper — one place to start
+# STAMP / ARE Paper Pipeline
 
-If anything felt **scattered**, use this file as the hub.
+This is the public pipeline hub for the STAMP/ARE paper package.
 
-**Path note:** In the private **`are`** repo, this file lives at `paper/README_PAPER_PIPELINE.md`. In the public **`AgentResponsibilityEngineering`** mirror it is copied to **`docs/stamp-paper/README_PAPER_PIPELINE.md`**; manuscript sources are under **`paper/`**, figures under **`assets/stamp-paper/`**, and the canonical PDF stays at the **repository root** (`STAMP_ARE_Paper.pdf`).
+The original build scripts live in the private ARE implementation repo. This
+public repository contains the synced paper artifacts, figures, STPA mirror, and
+public evidence summary.
 
-## What to read
+## What To Read
 
 | Question | File |
-|----------|------|
-| **What is “arXiv-ready” vs LaTeX?** | `paper/ARXIV_AND_EVIDENCE_REALITY.md` (short) |
-| **arXiv PDF deposit checklist** | `docs/stamp-paper/ARXIV_SUBMISSION_CHECKLIST.md` |
-| **Read STPA without ARE access** | Public mirror: [AgentResponsibilityEngineering `research/stpa/`](https://github.com/srex-dev/AgentResponsibilityEngineering/tree/main/research/stpa) |
-| **Why isn’t the full evidence bundle inside the public PDF?** | `paper/STAMP_ARE_ARXIV_READY.md` §13 + `paper/EVIDENCE_PUBLIC_SUMMARY.md` |
-| **Word/PDF looks wrong — how do I fix formatting?** | `paper/PDF_AND_WORD_FORMATTING.md` |
-| **Claims cheat sheet** | `paper/STAMP_ARE_FINAL.md` |
-| **Validation tiers (T0–T3) for E2E vs paper claims** | `docs/validation-tiers.md` |
+|---|---|
+| What is the paper PDF? | [`../../STAMP_ARE_Paper.pdf`](../../STAMP_ARE_Paper.pdf) |
+| Where is the Markdown source? | [`../../paper/STAMP_ARE_Paper_arxiv_ready.md`](../../paper/STAMP_ARE_Paper_arxiv_ready.md) |
+| What does "arXiv-ready" mean? | [`ARXIV_AND_EVIDENCE_REALITY.md`](ARXIV_AND_EVIDENCE_REALITY.md) |
+| Why is the full evidence bundle not public? | [`EVIDENCE_PUBLIC_SUMMARY.md`](EVIDENCE_PUBLIC_SUMMARY.md) |
+| What validation tier supports each claim? | [`../validation-tiers.md`](../validation-tiers.md) |
+| Where is public STPA? | [`../../research/stpa/`](../../research/stpa/) |
+| How should Word/PDF issues be handled? | [`PDF_AND_WORD_FORMATTING.md`](PDF_AND_WORD_FORMATTING.md) |
 
-## Build order (slim paper → Word → PDF → public sync)
+## Private Build Order
+
+The private implementation repo uses the following shape when regenerating
+paper artifacts:
 
 ```bash
-# 1) Figures / equation PNGs (matplotlib)
 python tools/paper/render_paper_assets.py
-
-# 2) Assemble Markdown (docx extract + STPA inserts + §13 + appendices)
 python tools/paper/build_stamp_arxiv_reconciled.py
-
-# 3) Reference Word template (margins, Normal/heading fonts) — once per machine / after template edits
 python tools/paper/build_reference_docx.py
-
-# 4) Word (embeds tables + images from paper/assets/; uses paper/templates/reference.docx when present)
 python tools/paper/md_to_arxiv_docx.py
-
-# 5) PDF — local pandoc (pdflatex/xelatex/lualatex) if installed; else Docker ``pandoc/latex``; else docx2pdf
-python tools/paper/build_stamp_arxiv_pdf.py paper/STAMP_ARE_Paper.pdf
-#    Docker-only (good typography without local TeX): python tools/paper/build_stamp_arxiv_pdf.py --docker-only paper/STAMP_ARE_Paper.pdf
-
-# 6) Copy to AgentResponsibilityEngineering (sibling clone; or set AGENT_RESP_PUBLIC_REPO)
+python tools/paper/build_stamp_arxiv_pdf.py
 python tools/paper/sync_public_discipline_repo.py
 ```
 
-Public layout mirrors **`docs/stamp-paper/`**, **`paper/`**, **`assets/stamp-paper/`**; **`STAMP_ARE_Paper.pdf`** stays at the **public repo root** for stable site links.
+This public repo does not include those private build scripts. It is the public
+mirror of the resulting artifacts and public-safe research package.
 
-## Submission zip (manuscript + full bundle)
+## Sync Rule
 
-```bash
-python tools/paper/assemble_submission_package.py
-```
+When refreshing the public mirror:
 
-Output under `paper/submission-package/_dist/` (gitignored).
+1. Rebuild paper artifacts in the private implementation repo.
+2. Sync the PDF, Markdown, DOCX, figures, and public STPA files.
+3. Update [`../../research/stpa/MIRROR_SYNC.txt`](../../research/stpa/MIRROR_SYNC.txt).
+4. Run `python tools/check_public_repo.py`.
+5. Confirm no private evidence, credentials, raw payloads, or protected material
+   were copied into this public repo.

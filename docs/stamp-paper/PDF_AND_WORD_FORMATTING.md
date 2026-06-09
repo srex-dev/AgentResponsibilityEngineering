@@ -1,47 +1,46 @@
-# PDF and Word formatting — known limits and fixes
+# PDF And Word Formatting
 
-## Why the PDF can look “wrong”
+## Known Limits
 
-The slim paper is authored in **Markdown**, then converted with a **small in-repo script** (`tools/paper/md_to_arxiv_docx.py`) into **Word**, then exported to **PDF** (Word, `docx2pdf`, etc.). That path is **not** LaTeX: you do **not** get IEEE/ACM default typography, floating figures, or automatic equation numbering unless you add them in Word or move to **TeX**.
+The slim paper is authored in Markdown, converted to Word, and exported to PDF.
+That path is not LaTeX. It does not automatically provide IEEE/ACM typography,
+floating figures, or equation numbering.
 
-**Implication:** For a **venue-grade** PDF, plan either:
+For a venue-grade PDF, plan one of these paths:
 
-- **Hand polish in Word** once (styles, page breaks, caption numbering), or  
-- **Port to LaTeX** (separate work item; see `ARXIV_AND_EVIDENCE_REALITY.md`).
+- hand-polish the Word export once
+- port the manuscript to LaTeX as a separate work item
 
-## What the converter does today
+## Converter Coverage
 
-- Headings `#` / `##` / `###` / `####`  
-- **Bold** `**…**` in body text  
-- **Markdown tables** → Word “Table Grid”  
-- **Images** `![caption](assets/…)` → centered embedded PNG + italic caption  
-- **Bullets** `- ` and **numbered** `1. ` lists  
-- It does **not** split giant single-line paragraphs from the legacy Word extract — break those manually in Markdown if they render as dense blocks.
+The private converter path handles:
 
-## Figures and “equation” images
+- Markdown headings
+- bold body text
+- Markdown tables
+- embedded PNG figures
+- bullets and numbered lists
 
-Run **`python tools/paper/render_paper_assets.py`** before `md_to_arxiv_docx.py` so `paper/assets/*.png` exists. The manuscript references:
+It does not reliably fix very large paragraphs from legacy Word extracts. Break
+those manually in Markdown if the PDF renders dense blocks.
 
-- `assets/fig_golden_path.png`  
-- `assets/eq_ordering.png`  
-- `assets/eq_allow_ledger.png`  
+## Figures
 
-## Example: Desktop PDF path (Windows)
+The public manuscript references figures under:
 
-After regenerating `paper/STAMP_ARE_ARXIV_READY.docx`:
+[`../../assets/stamp-paper/`](../../assets/stamp-paper/)
+
+Current figure files:
+
+- [`fig_golden_path.png`](../../assets/stamp-paper/fig_golden_path.png)
+- [`eq_ordering.png`](../../assets/stamp-paper/eq_ordering.png)
+- [`eq_allow_ledger.png`](../../assets/stamp-paper/eq_allow_ledger.png)
+
+## Public Sync
+
+After regenerating artifacts in the private implementation repo, sync the public
+PDF, Markdown, DOCX, and figure files to this repository and run:
 
 ```bash
-python tools/paper/md_to_arxiv_docx.py "C:/Users/jonat/OneDrive/Desktop/STAMP_ARE_Paper.docx" paper/STAMP_ARE_ARXIV_READY.md
+python tools/check_public_repo.py
 ```
-
-Open the DOCX in Word → **File → Save As → PDF** → e.g. `C:\Users\jonat\OneDrive\Desktop\STAMP_ARE_Paper.pdf`.
-
-Or use `docx2pdf` if Word automation is available:
-
-```bash
-python -c "from docx2pdf import convert; convert(r'...STAMP_ARE_Paper.docx', r'...STAMP_ARE_Paper.pdf')"
-```
-
-## Public discipline repo
-
-Sync the regenerated `.md` / `.docx` / `.pdf` to [AgentResponsibilityEngineering](https://github.com/srex-dev/AgentResponsibilityEngineering) when you want the public PDF to match the `are` repo state.

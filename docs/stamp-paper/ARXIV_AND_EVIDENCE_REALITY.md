@@ -1,18 +1,38 @@
-# arXiv vs this repo — short pointer
+# arXiv And Evidence Reality
 
-**Start here instead of guessing:** [`paper/README_PAPER_PIPELINE.md`](README_PAPER_PIPELINE.md)
+## What "arXiv-ready" Means Here
 
-## In one paragraph
+In this repository, "arXiv-ready" means the argument is structured for
+submission: abstract, bounded STPA closure, appendices, figures, and evidence
+tiering.
 
-- **“arXiv-ready” here** means the **argument** is structured for submission (abstract, STPA closure, appendices, figures as PNG, evidence **tiering** in §13) — **not** that we ship a default **LaTeX** build. arXiv `cs.*` often expects **TeX**; we currently use **Markdown → Word → PDF**.  
-- **Evidence is tiered, not binary:** public paper + **`EVIDENCE_PUBLIC_SUMMARY.md`** (attestation) + **full hashed bundle** on request or as supplementary (`assemble_submission_package.py`). The public PDF omits raw logs on purpose — see §13.  
-- **Formatting / figures:** run `render_paper_assets.py` before `md_to_arxiv_docx.py`; polish in Word or port to LaTeX for camera-ready — [`PDF_AND_WORD_FORMATTING.md`](PDF_AND_WORD_FORMATTING.md).
+It does not mean the repository ships a default LaTeX build. The current public
+source path is Markdown -> Word -> PDF.
 
-## Links
+## Evidence Is Tiered
 
-| Topic | Doc |
-|-------|-----|
-| Full bundle path + integrity | `research/evidence-bundles/README.md` |
-| Public one-page attestation | `paper/EVIDENCE_PUBLIC_SUMMARY.md` |
-| Word/PDF quirks | `paper/PDF_AND_WORD_FORMATTING.md` |
-| Local compose vs synthetic vs staging (T0–T3) | `docs/validation-tiers.md` |
+Evidence is not binary.
+
+| Tier | Public artifact |
+|---|---|
+| Level 1 | Paper and discipline framing |
+| Level 2 | Public evidence summary and STPA mirror |
+| Level 3 | Full frozen hashed packet by request or supplementary material |
+
+The public PDF omits raw logs on purpose. See:
+
+- [`EVIDENCE_PUBLIC_SUMMARY.md`](EVIDENCE_PUBLIC_SUMMARY.md)
+- [`../validation-tiers.md`](../validation-tiers.md)
+
+## Formatting And Figures
+
+The paper source lives at:
+
+[`../../paper/STAMP_ARE_Paper_arxiv_ready.md`](../../paper/STAMP_ARE_Paper_arxiv_ready.md)
+
+Figures live at:
+
+[`../../assets/stamp-paper/`](../../assets/stamp-paper/)
+
+For venue-grade typography, either hand-polish the Word/PDF export or port the
+paper to LaTeX as a separate work item.

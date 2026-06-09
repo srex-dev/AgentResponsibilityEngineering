@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use Agent Responsibility Engineering, please cite this repository."
+title: "Agent Responsibility Engineering"
+abstract: "A discipline for governing autonomous AI agents in production through identity, scoped authority, policy, evidence, and proof-before-execution."
+authors:
+  - family-names: "Kershaw"
+    given-names: "Jonathan"
+repository-code: "https://github.com/srex-dev/AgentResponsibilityEngineering"
+url: "https://github.com/srex-dev/AgentResponsibilityEngineering"
+license: "CC-BY-4.0"
+version: "0.1.0"
+date-released: "2026-06-09"
+keywords:
+  - "agent governance"
+  - "autonomous agents"
+  - "AI safety"
+  - "STAMP"
+  - "STPA"
+  - "policy enforcement"
+  - "proof-before-execution"

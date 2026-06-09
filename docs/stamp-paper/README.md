@@ -1,19 +1,27 @@
-# STAMP / ARE paper (public hub)
+# STAMP / ARE Paper Hub
 
-Start with **[README_PAPER_PIPELINE.md](README_PAPER_PIPELINE.md)** for build order, links to the STPA mirror, and sync notes from the private ARE platform repo.
+Start here for the public STAMP/STPA paper package.
 
 | Document | Purpose |
-|----------|---------|
-| [README_PAPER_PIPELINE.md](README_PAPER_PIPELINE.md) | Pipeline hub and cross-links |
-| [ARXIV_AND_EVIDENCE_REALITY.md](ARXIV_AND_EVIDENCE_REALITY.md) | arXiv LaTeX vs this Markdown path |
-| [EVIDENCE_PUBLIC_SUMMARY.md](EVIDENCE_PUBLIC_SUMMARY.md) | Level-1 attestation (what was frozen, commit, artifact classes) |
-| [ARXIV_SUBMISSION_CHECKLIST.md](ARXIV_SUBMISSION_CHECKLIST.md) | PDF/fonts/ancillary checklist |
-| [PDF_AND_WORD_FORMATTING.md](PDF_AND_WORD_FORMATTING.md) | Word export and layout notes |
+|---|---|
+| [`README_PAPER_PIPELINE.md`](README_PAPER_PIPELINE.md) | Paper pipeline hub and sync notes |
+| [`ARXIV_AND_EVIDENCE_REALITY.md`](ARXIV_AND_EVIDENCE_REALITY.md) | What "arXiv-ready" means here |
+| [`EVIDENCE_PUBLIC_SUMMARY.md`](EVIDENCE_PUBLIC_SUMMARY.md) | Public evidence attestation |
+| [`ARXIV_SUBMISSION_CHECKLIST.md`](ARXIV_SUBMISSION_CHECKLIST.md) | PDF and submission checklist |
+| [`PDF_AND_WORD_FORMATTING.md`](PDF_AND_WORD_FORMATTING.md) | Word/PDF formatting notes |
 
-**Canonical PDF (repo root):** [STAMP_ARE_Paper.pdf](../STAMP_ARE_Paper.pdf) — stable URL for site and citations.
+## Canonical Artifacts
 
-**Sources under `paper/`:** [STAMP_ARE_Paper_arxiv_ready.md](../paper/STAMP_ARE_Paper_arxiv_ready.md) and `.docx`.
+| Artifact | Location |
+|---|---|
+| Canonical PDF | [`../../STAMP_ARE_Paper.pdf`](../../STAMP_ARE_Paper.pdf) |
+| Markdown source | [`../../paper/STAMP_ARE_Paper_arxiv_ready.md`](../../paper/STAMP_ARE_Paper_arxiv_ready.md) |
+| Word source | [`../../paper/STAMP_ARE_Paper_arxiv_ready.docx`](../../paper/STAMP_ARE_Paper_arxiv_ready.docx) |
+| Figure PNGs | [`../../assets/stamp-paper/`](../../assets/stamp-paper/) |
+| Normative STPA mirror | [`../../research/stpa/`](../../research/stpa/) |
 
-**Figures:** [assets/stamp-paper/](../assets/stamp-paper/).
+## Evidence Boundary
 
-**Normative STPA mirror:** [research/stpa/](../research/stpa/).
+This public repo contains the paper, public STPA mirror, and public-safe evidence
+summary. Full frozen reviewer packets remain outside this public mirror and may
+be provided as supplementary material when appropriate.

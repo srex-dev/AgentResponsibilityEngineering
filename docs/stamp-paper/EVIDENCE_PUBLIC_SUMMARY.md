@@ -1,48 +1,62 @@
-# Evidence — public one-page summary (Level 2 attestations)
+# Evidence Public Summary
 
-**Purpose:** Give chairs and readers a **high-level view** without opening the **Level 3** frozen packet (raw logs, full gate matrices). This file is **not** a substitute for the bundle when a reviewer is checking hashes and transcripts.
+This file gives reviewers and readers a public-safe view of the evidence model
+behind the STAMP/ARE paper.
 
-**E2E / compose vs staging:** Strong claims in the manuscript should map to a **validation tier** (T0–T3). See [`docs/validation-tiers.md`](../docs/validation-tiers.md) and align prose with [`research/are-theory-expansion/GAP_MAP.md`](../research/are-theory-expansion/GAP_MAP.md) **claim status**—do not treat local Docker-only runs (T1) as proof of production behavior (T3) without separate evidence.
+It is not a substitute for the full frozen Level 3 packet when a reviewer needs
+to inspect raw gate logs, transcripts, and file hashes.
 
----
+## Claim Tiering
 
-## Normative STPA (public, no ARE clone required)
+Strong claims in the manuscript should map to a validation tier. See
+[`../validation-tiers.md`](../validation-tiers.md).
 
-The full **`research/stpa/`** tree is mirrored on the public discipline repo:  
-[github.com/srex-dev/AgentResponsibilityEngineering/tree/main/research/stpa](https://github.com/srex-dev/AgentResponsibilityEngineering/tree/main/research/stpa)  
-(`STPA_RESOLUTION.md`, `STPA_PACKAGE.md`, UCA enumeration, hazard closure, etc.)
+Do not treat local Docker-only runs as proof of staging or production behavior
+without separate evidence.
 
-## Frozen packet identity
+## Normative STPA
+
+The public STPA mirror is available in:
+
+[`../../research/stpa/`](../../research/stpa/)
+
+Important files:
+
+| File | Purpose |
+|---|---|
+| [`STPA_RESOLUTION.md`](../../research/stpa/STPA_RESOLUTION.md) | Closure record |
+| [`STPA_PACKAGE.md`](../../research/stpa/STPA_PACKAGE.md) | Main package |
+| [`UCA_ENUMERATION.md`](../../research/stpa/UCA_ENUMERATION.md) | Unsafe control action enumeration |
+| [`HAZARD_UCA_CONSTRAINT_TEST_CLOSURE.md`](../../research/stpa/HAZARD_UCA_CONSTRAINT_TEST_CLOSURE.md) | Hazard, constraint, and test closure |
+
+## Frozen Packet Identity
 
 | Field | Value |
-|-------|--------|
-| **Bundle directory** | `research/evidence-bundles/2026-04-26-stamp-safety-reviewer-packet-submission/` |
-| **Git commit at freeze** (`GIT_HEAD.txt`) | `653d455346e57f6a0ba37eecb4132138d923a36d` |
-| **What “frozen” means** | Copies of normative STPA docs + paper pointers + **full** test and gate logs + `FILES.sha256` for every file in the packet |
+|---|---|
+| Bundle directory | `research/evidence-bundles/2026-04-26-stamp-safety-reviewer-packet-submission/` |
+| Git commit at freeze | `653d455346e57f6a0ba37eecb4132138d923a36d` |
+| Meaning of frozen | Normative STPA docs, paper pointers, full test/gate logs, and hashes copied at freeze time |
 
-## What is inside (categories only)
+The full frozen packet is not stored in this public repo. That is intentional:
+it may include raw logs and implementation evidence that should be shared only
+through a controlled reviewer or supplementary-material channel.
 
-1. **Normative analysis:** `STPA_RESOLUTION.md`, `STPA_PACKAGE.md`, `claims_ledger.md`, `interposition_audit.md`, `SAFETY_CASE.md` (copies at freeze time).  
-2. **Execution of checks:** `test-output.log` (pytest), `run-all-internal-gates-full.log`.  
-3. **Integrity:** `MANIFEST.md`, `FILES.sha256`, `GIT_HEAD.txt`, `GIT_BRANCH.txt`, `FREEZE_TIME_UTC.txt`.
+## Recorded Outcomes
 
-## Recorded outcomes (from `MANIFEST.md` at freeze)
+From the frozen packet manifest at the time of freeze:
 
-- **`python -m pytest tests/ -q`** — STAMP harness: **10 passed** (see bundle `test-output.log`).  
-- **`python tools/testing/run-all-internal-gates.py`** — internal gate matrix: **48 components, ALL PASS** (see bundle logs).
+- `python -m pytest tests/ -q`: STAMP harness, 10 passed
+- `python tools/testing/run-all-internal-gates.py`: internal gate matrix, 48
+  components, all pass
 
-*Re-freeze updates these numbers; align this summary when you cut a new bundle.*
+Re-freeze updates these numbers. If the paper claim changes, this summary should
+be updated in the same commit.
 
----
+## Public-Safety Rule
 
-## How to get more than this summary
+Public evidence may include IDs, decisions, aggregate counts, commit hashes,
+source references, and public-safe summaries.
 
-| Need | Action |
-|------|--------|
-| **Level 3 full packet** | Request confidential zip from authors **or** run `python tools/paper/assemble_submission_package.py` from a clone that contains `research/evidence-bundles/…`. |
-| **Verify integrity** | In the bundle directory: `sha256sum -c FILES.sha256` (Linux/macOS) or equivalent on Windows. |
-| **Why not in the public PDF?** | See §13 of `STAMP_ARE_ARXIV_READY.md` — IP, hygiene, and size; **not** “evidence only on payment.” |
-
----
-
-*This file is safe to mirror on a public discipline repo alongside the PDF.*
+Public evidence must not include raw payloads, tokens, credentials, raw headers,
+signatures, private keys, protected evidence bodies, private proof packets, or
+client confidential material.
