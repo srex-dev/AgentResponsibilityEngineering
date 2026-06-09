@@ -38,7 +38,7 @@ This repository must not include:
 | Surface | Public? | Relationship |
 |---|---:|---|
 | AgentResponsibilityEngineering | Yes | Discipline, paper, STPA mirror, public evidence summaries |
-| ARE Foundation | Public when released | S0/S1 runnable foundation for identity, scoped authority, policy, and proof basics |
+| ARE Foundation | Yes | S0/S1 runnable foundation for identity, scoped authority, policy, and proof basics |
 | Commercial ARE platform | No | Full Command Center, visual proof, BYOPolicy, Live Pulse, S2-S6, client/operator UX |
 | Governance-strata | No | Higher-risk transition governance and orchestration internals |
 
